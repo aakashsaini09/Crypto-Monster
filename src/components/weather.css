@@ -3,7 +3,7 @@
 *{
     margin: 0;
     padding: 0;
-    background-color: rgb(165, 137, 214);
+    background-color: rgb(158, 155, 162);
 }
 
 nav ul{
@@ -32,6 +32,12 @@ nav ul li .linkclass:hover{
     font-family: 'Pangolin', cursive;
     /* font-family: 'Poppins', sans-serif;
     font-family: 'Rajdhani', sans-serif;  */
+}
+#footer a {
+  background-color: #fff;
+  text-decoration: none;
+  color: red;
+  cursor: pointer;
 }
 
 /* *********************************************bootstrap******************************************************************************************************** */
@@ -110,4 +116,21 @@ nav ul li .linkclass:hover{
 
   .bd-mode-toggle .dropdown-menu .active .bi {
     display: block !important;
+  }
+  @media screen and (max-width: 800px)
+  {
+    #navul{
+      display: flex;
+      flex-direction: row;
+      margin-bottom: 0px !important;
+    }
+    #navul li{
+      padding: 0;
+      margin: 0;
+    }
+    #navul li a{
+      font-size: 16px !important;
+      margin-bottom: 17px;
+      padding-bottom: 5px;
+    }
   }
