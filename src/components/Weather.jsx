@@ -47,8 +47,8 @@ const Weather = () => {
             </div>
           </div>
           {/* ******************************************************************* */}
-          <nav className="navbar navbar-expand-lg bg-body-tertiary p-0 m-2">
-            <ul className="navbar-nav gap-5 me-auto mb-5 mb-lg-0">
+          <nav className="navbar navbar-expand-lg bg-body-tertiary p-0 m-3" id='nabbar'>
+            <ul className="navbar-nav gap-5 me-auto mb-5 mb-lg-0" id='navul'>
               <li className="nav-item">
                 <a className="nav-link active linkclass" aria-current="page" href="#" onClick={() => navValueSet("mumbai")}>Mumbai</a>
               </li>
@@ -142,7 +142,7 @@ const Weather = () => {
       </div>
       <footer>
       <div id='footer'>
-         Build by Aakash Saini, 2023 &#169; Aakash Saini
+         Build by Aakash Saini, 2023 &#169; <a target='_blank' href="https://aakash-saini.netlify.app/">Aakash Saini</a>
       </div>
       </footer>
 
