@@ -1,6 +1,5 @@
 import React, {useState} from 'react'
 import './weather.css'
-
 const WeatherComp = ({weatherDetails }) => {
 const [weatherCondition, setweatherCondition] = useState("normal")
   return (
@@ -33,6 +32,12 @@ const [weatherCondition, setweatherCondition] = useState("normal")
             <div className='bottom-3'>Sunset {weatherDetails.sunset} PM</div>
             <div className='bottom-4'><i className={"wi wi-sunset"}></i></div>
           </div>
+{/*           <div className='bottom-section'>
+            <div className='bottom-1'>Humidity = {weatherDetails.humidity}</div>
+            <div className='bottom-2'>Pressure = {weatherDetails.pressure}</div>
+            <div className='bottom-3'>Sunset {weatherDetails.sunset} PM</div>
+            <div className='bottom-4'><i className={"wi wi-sunset"}></i></div>
+          </div> */}
         </div>
       </div>
             <div className='container'>
