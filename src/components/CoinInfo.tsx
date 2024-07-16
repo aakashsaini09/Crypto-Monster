@@ -9,28 +9,97 @@ const CoinInfo = () => {
     }
     const [data, setdata] = useState<coinInterFace[]>([])
     const getAllCoins = async () => {
-        const apiKey = import.meta.env.VITE_API_KEY
-        const res = await axios.get(`https://rest.coinapi.io/v1/exchangerate/USD?apikey=${apiKey}&invert=true&output_format=csv`)
-        const parseResult = parse(res.data, {header: true})
-        // @ts-ignore
-        const parseData = parseResult.data
-        // const result: coinInterFace = parseData.dat
-        setdata(parseData)
-        console.log("data is::", data)
+        // const apiKey = import.meta.env.VITE_API_KEY
+        // const res = await axios.get(`https://rest.coinapi.io/v1/exchangerate/USD?apikey=${apiKey}&invert=true&output_format=csv`)
+        // const parseResult = parse(res.data, {header: true})
+        // // @ts-ignore
+        // const parseData = parseResult.data
+        // setdata(parseData)
+        // console.log("data is::", data)
+        setdata([{
+          asset_id_quote: "$BURN",
+          rate: "0.0000073652385418455724165792",
+          time: "2024-07-16T07:43:38.0000000Z"
+        }, {
+          asset_id_quote: "$BURN",
+          rate: "0.0000073652385418455724165792",
+          time: "2024-07-16T07:43:38.0000000Z"
+        },{
+          asset_id_quote: "$BURN",
+          rate: "0.0000073652385418455724165792",
+          time: "2024-07-16T07:43:38.0000000Z"
+        },{
+          asset_id_quote: "$BURN",
+          rate: "0.0000073652385418455724165792",
+          time: "2024-07-16T07:43:38.0000000Z"
+        },{
+          asset_id_quote: "$BURN",
+          rate: "0.0000073652385418455724165792",
+          time: "2024-07-16T07:43:38.0000000Z"
+        },{
+          asset_id_quote: "$BURN",
+          rate: "0.0000073652385418455724165792",
+          time: "2024-07-16T07:43:38.0000000Z"
+        },{
+          asset_id_quote: "$BURN",
+          rate: "0.0000073652385418455724165792",
+          time: "2024-07-16T07:43:38.0000000Z"
+        },])
     }
-    
+    const [currentVal, setcurrentVal] = useState("big")
+    console.log(currentVal)
   return (
     <>
     <div className="w-full h-full flex flex-col justify-center items-center">
-      <button className="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2" onClick={getAllCoins}>Click me</button>
-      { data.map((e, i) => {
-        return <div key={i} className="flex gap-5">
-          <div className="my-3 border-2 border-black">Time: {new Date(e.time).toLocaleString()}</div>
-          <div className="my-3 border-2 border-black">Rate: {e.rate}</div>
-          <div className="my-3 border-2 border-black">{e.rate}</div>
+      <button className="text-white bg-gray-800 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2" onClick={getAllCoins}>Click me</button>
+        <div className="relative overflow-x-auto shadow-md sm:rounded-lg w-full">
+          <div className="md:mx-11 mx-2">
+              <span className="gap-3">
+                <button className="text-white bg-gray-800 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2" onClick={() => setcurrentVal("big")}>Bigg</button>
+                <button className="text-white bg-gray-800 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2" onClick={() => setcurrentVal("small")}>Small</button>
+                <button className="text-white bg-gray-800 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2" onClick={() => setcurrentVal("name")}>Size</button>
+              </span>
+            <table className="w-full text-sm text-left rtl:text-right text-gray-500 border-2 border-black">
+              <thead className="text-xs text-gray-700 uppercase bg-gray-50">
+                    <tr>
+                        <th scope="col" className="px-6 py-3">
+                            Number
+                        </th>
+                        <th scope="col" className="px-6 py-3">
+                            Name
+                        </th>
+                        <th scope="col" className="px-6 py-3">
+                            Price
+                        </th>
+                        <th scope="col" className="px-6 py-3">
+                            Action
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                  { data.map((e, i) => {
+                    return <tr key={i} className="bg-white border-b">
+                        <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
+                            {i+1}
+                        </th>
+                        <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
+                            {e.asset_id_quote}
+                        </th>
+                        <td className="px-6 py-4">
+                        ${parseFloat(e.rate).toFixed(5)}
+                        </td>
+                        <td className="px-6 py-4">
+                        {new Date(e.time).toLocaleString()}
+                        </td>
+                        <td className="px-6 py-4">
+                            <a href="#" className="font-medium text-blue-600 hover:underline">Edit</a>
+                        </td>
+                    </tr> }) }
+                </tbody>
+            </table>
+            </div>
         </div>
-      })}
-      </div>
+    </div>
     </>
   )
 }
