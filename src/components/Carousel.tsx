@@ -4,6 +4,9 @@ import { useRecoilValue } from 'recoil'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
 import AliceCarousel from 'react-alice-carousel'
+export function numberWithCommas(x: any){
+  return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g,",");
+}
 const Carousel = () => {
     const currentCurrency = useRecoilValue(currency)
     useEffect(() => {
@@ -16,7 +19,8 @@ const Carousel = () => {
         id: number,
         image: string,
         symbol: string,
-        price_change_percentage_24h: number
+        price_change_percentage_24h: number,
+        current_price: string
     }
     
     
@@ -27,22 +31,21 @@ const Carousel = () => {
         setcoin(data)
     }
     
-    
     const items = coin.map((c) => {
         let price = c.price_change_percentage_24h >= 0;
         return (
-        <Link to={`/coins/${c.id}`}>
-            <img className='w-28 ' src={c.image} alt="" />
-            <span className='text-white'>{c.symbol}</span>
-            <span className='text-white'>{price && "+"} {c?.price_change_percentage_24h?.toFixed(2)}%</span>
+        <Link to={`/coins/${c.id}`} className='px-14 flex flex-col justify-center items-center text-center gap-2'>
+            <img className='min-w-28 max-w-28' src={c.image} alt="" />
+            <span className='text-white mt-2 font-bold'>{c.symbol}<span className={`text-white font-bold ${price ? 'text-green-600': 'text-red-600'}`}>{price && " +"} {c?.price_change_percentage_24h?.toFixed(2)}%</span></span>
+            <span className='text-white font-bold text-xl'>$ {numberWithCommas(parseFloat(c.current_price)?.toFixed(2))}</span>
         </Link>)
     })
     const responsive = {
       0: {
-        items: 4
+        items: 2
       },
-      400: {
-        items: 3
+      512: {
+        items: 4
       }
     }
   
