@@ -2,7 +2,7 @@
 const CoinPage = () => {
   return (
     <div>
-      CoinPage
+      coin
     </div>
   )
 }

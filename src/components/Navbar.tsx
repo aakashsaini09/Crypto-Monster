@@ -1,11 +1,6 @@
-import Carousel from './Carousel'
-import './Navbar.css'
 // import { TrendingCoins } from '../store/Config'
 
 const Navbar = () => {
-  
-  
-
   return (<>
 <nav className="bg-gray-950 text-white">
   <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
@@ -31,12 +26,7 @@ const Navbar = () => {
     </div>
   </div>
 </nav>
-
-    <div className="banner h-[40vh] w-full">
-      <div className='w-full pl-28'>
-        <Carousel/>
-      </div>
-    </div>
+    
     </>
   )
 }

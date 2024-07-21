@@ -6,15 +6,15 @@ import { numberWithCommas } from "./Carousel"
 import { createTheme, Pagination } from "@mui/material"
 import { ThemeProvider } from '@mui/system';
 import { useNavigate } from "react-router-dom"
+import LoadingComp from "./LoadingComp"
 const CoinTable = () => {
     const currentCurrency = useRecoilValue(currency)
-    const history = useNavigate()
     useEffect(() => {
         GetCoins()
     }, [])
     interface allcoins{
         name: string,
-        id: number,
+        id: string,
         image: string,
         symbol: string,
         price_change_percentage_24h: number,
@@ -23,12 +23,12 @@ const CoinTable = () => {
     }
     const [page, setpage] = useState(1)
     const [coins, setcoins] = useState<allcoins[]>([])
-    console.log("Into the comp")
+    const [loading, setloading] = useState(false)
     const GetCoins= async()=>{
-        console.log("Into the eff")
+      setloading(true)
         const {data} = await axios.get(`https://api.coingecko.com/api/v3/coins/markets?vs_currency=${currentCurrency}&order=gecko_desc&per_page=100&page=1&sparkline=false&price_change_percentage=24h`)
         setcoins(data)
-        console.log(data)
+        setloading(false)
     }
     const theme = createTheme({
       palette: {
@@ -47,9 +47,13 @@ const CoinTable = () => {
         }
       },
     });
-    
+    const navigate = useNavigate()
+    function goCoinPage(id: String){
+      navigate(`/coins/${id}`)
+      // console.log(id)
+    }
    return (
-     <div>
+     <div>{loading ? <LoadingComp/> : 
       <ThemeProvider theme={theme}>
         <div className="top">
             <h1 className="text-white text-4xl font-semibold text-center mt-5">Cryptocurrency Prices by Market Cap</h1>
@@ -72,16 +76,14 @@ const CoinTable = () => {
                               24h Change
                           </th>
                           <th scope="col" className="px-6 py-3">
-                              Market Cap
+                              Market Cap 
                           </th>
                       </tr>
                   </thead>
                   <tbody className="pt-5">
-
                     {coins.slice((page -1) * 10, (page -1) * 10 +10).map((coin) => {
                       const profit = coin.price_change_percentage_24h > 0;
-                      // @ts-ignore
-                      return <tr onClick={() => history.push(`/coins/${coin.id}`)} id={coin.id} className="text-white py-3 text-lg border-b border-gray-500 hover:bg-slate-900 cursor-pointer">
+                      return <tr key={coin.symbol} className="text-white py-3 text-lg border-b border-gray-500 hover:bg-slate-900 cursor-pointer" onClick={() => goCoinPage(coin.id)}>
                           <th scope="row" className="px-2 py-4 gap-3 font-medium text-gray-100 whitespace-nowrap flex">
                               <img src={coin.image} className="w-20" alt="" /> <span className="text-gray-400 font-medium text-sm w-full my-auto"><span className="uppercase text-white text-base font-bold">{coin.symbol} </span><br/>{coin.name}</span>
                           </th>
@@ -102,7 +104,7 @@ const CoinTable = () => {
         <div className="w-full h-auto py-1">
         <Pagination size="large" color={"standard"} sx={{color: 'text.secondary'}} className="my-5 flex justify-center text-center" count={Number((coins.length/10).toFixed(0))} onChange={(_, value) => { setpage(value); window.scroll(0, 450)}}/>
         </div>
-    </ThemeProvider>
+    </ThemeProvider>}
     </div>
   )
 }
