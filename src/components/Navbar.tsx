@@ -34,7 +34,7 @@ const Navbar = () => {
 
     <div className="banner h-[40vh] w-full">
       <div className='w-full pl-28'>
-        {/* <Carousel/> */}
+        <Carousel/>
       </div>
     </div>
     </>
