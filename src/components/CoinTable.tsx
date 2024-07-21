@@ -56,7 +56,7 @@ const CoinTable = () => {
      <div>{loading ? <LoadingComp/> : 
       <ThemeProvider theme={theme}>
         <div className="top">
-            <h1 className="text-white text-4xl font-semibold text-center mt-5">Cryptocurrency Prices by Market Cap</h1>
+            <h1 className="text-white text-4xl font-semibold text-center pt-24">Cryptocurrency Prices by Market Cap</h1>
         </div>
         <div className="w-full text-white flex justify-center items-center">
           <input type="text" className="bg-gray-950 border border-gray-700 text-gray-300 rounded-sm focus:ring-blue-500 focus:border-blue-500 hover:border-gray-300 mt-4 p-3 py-5 text-base md:p4 md:pl-5 w-[78vw] " placeholder="Search for a crypto currency..." />

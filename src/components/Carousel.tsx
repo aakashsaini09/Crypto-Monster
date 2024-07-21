@@ -9,8 +9,8 @@ import LoadingComp from './LoadingComp'
 export function numberWithCommas(x: any){
   return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g,",");
 }
-const [loading, setloading] = useState(false)
 const Carousel = () => {
+  const [loading, setloading] = useState(false)
     const currentCurrency = useRecoilValue(currency)
     useEffect(() => {
         GetCoins()
@@ -54,10 +54,10 @@ const Carousel = () => {
     }
   
   return (<>{loading? <LoadingComp/> : 
-    <div className="banner h-[40vh] w-full">
+    <div className="banner h-[45vh] w-full">
       <div className='w-full pl-28'>
     <div className='flex flex-col justify-center'>
-        <h1 className='text-center text-white font-bold text-5xl mt-4'>Crypto Monster</h1>
+        <h1 className='text-center text-white font-bold text-5xl my-4'>Crypto Monster</h1>
         <span className='text-center text-slate-100 font-light my-4'>Get all the info Regarding your Favorite Crypto Currency</span>
       <AliceCarousel mouseTracking infinite responsive={responsive} autoPlayInterval={1000} autoPlay disableDotsControls animationDuration={1500} disableButtonsControls items={items}/>
     </div>
