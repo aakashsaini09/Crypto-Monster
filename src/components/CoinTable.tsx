@@ -5,8 +5,10 @@ import { currency } from "../store"
 import { numberWithCommas } from "./Carousel"
 import { createTheme, Pagination } from "@mui/material"
 import { ThemeProvider } from '@mui/system';
+import { useNavigate } from "react-router-dom"
 const CoinTable = () => {
     const currentCurrency = useRecoilValue(currency)
+    const history = useNavigate()
     useEffect(() => {
         GetCoins()
     }, [])
@@ -31,14 +33,17 @@ const CoinTable = () => {
     const theme = createTheme({
       palette: {
         background: {
-          paper: '#FFFFFF',
+          paper: '#fc0800',
         },
         text: {
           primary: '#FFFF00',
-          secondary: '#FFFFFF',
+          secondary: '#fc0800',
+        },
+        primary: {
+          main: "#fc0800"
         },
         action: {
-          active: '#FFFFFF',
+          active: '#fc0800',
         }
       },
     });
@@ -76,7 +81,7 @@ const CoinTable = () => {
                     {coins.slice((page -1) * 10, (page -1) * 10 +10).map((coin) => {
                       const profit = coin.price_change_percentage_24h > 0;
                       // @ts-ignore
-                      return <tr id={coin.id} className="text-white py-3 text-lg border-b border-gray-500 hover:bg-slate-900 cursor-pointer">
+                      return <tr onClick={() => history.push(`/coins/${coin.id}`)} id={coin.id} className="text-white py-3 text-lg border-b border-gray-500 hover:bg-slate-900 cursor-pointer">
                           <th scope="row" className="px-2 py-4 gap-3 font-medium text-gray-100 whitespace-nowrap flex">
                               <img src={coin.image} className="w-20" alt="" /> <span className="text-gray-400 font-medium text-sm w-full my-auto"><span className="uppercase text-white text-base font-bold">{coin.symbol} </span><br/>{coin.name}</span>
                           </th>
@@ -95,7 +100,7 @@ const CoinTable = () => {
           </div>
         </div>
         <div className="w-full h-auto py-1">
-        <Pagination shape="rounded" size="large" sx={{color: 'text.secondary'}} className="my-5 flex justify-center text-center" count={Number((coins.length/10).toFixed(0))} onChange={(_, value) => { setpage(value); window.scroll(0, 450)}}/>
+        <Pagination size="large" color={"standard"} sx={{color: 'text.secondary'}} className="my-5 flex justify-center text-center" count={Number((coins.length/10).toFixed(0))} onChange={(_, value) => { setpage(value); window.scroll(0, 450)}}/>
         </div>
     </ThemeProvider>
     </div>
