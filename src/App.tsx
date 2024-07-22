@@ -10,11 +10,13 @@ function App() {
     <>
     <RecoilRoot>
       <BrowserRouter>
+      <div className='font-mono'>
       <Navbar/>
       <Routes>
         <Route path='/' element={<Home/>}/>
         <Route path='/coins/:id' element={<CoinPage/>}/>
       </Routes>
+      </div>
       </BrowserRouter>
       </RecoilRoot>
     </>
