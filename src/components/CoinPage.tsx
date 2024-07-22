@@ -2,10 +2,10 @@ import axios from "axios"
 import { useState, useEffect } from "react"
 import CoinInfo from "./CoinInfo"
 import { useParams } from "react-router-dom"
+import parse from 'html-react-parser';
 import LoadingComp from "./LoadingComp"
 import { numberWithCommas } from "./Carousel"
 const CoinPage = () => {
-
   const [loading, setloading] = useState(false)
   const {id} = useParams<{id: string}>()
   const [coin, setCoin] = useState<CoinInfoProps>({
@@ -43,16 +43,16 @@ const CoinPage = () => {
     <>
    {loading ? <LoadingComp/> : 
    <div className="flex flex-col md:flex-row bg-gray-950 text-white min-h-[100vh] items-start">
-    <div>
-     <div className="w-full md:w-[28vw] h-auto border-0 md:border-r-2 md:border-gray-900 flex flex-col items-center mt-5">
+    <div className="border-0 md:border-r-2 md:border-gray-900">
+     <div className="w-full md:w-[28vw] h-auto flex flex-col items-center mt-5">
         <img src={coin.image.large} className="h-48 mb-4" alt="" />
         <div className="font-extrabold my-5 text-6xl">{coin.name}</div>
-        <div className="mx-3 ml-3 md:ml-6 font-normal text-gray-200 text-sm md:text-xl">{coin.description.en.split(". ")[0]}</div>
+        <div className="pr-3 pl-3 md:pl-6 font-normal text-gray-200 text-base tracking-widest md:text-base w-full md:w-[28vw]">{parse(coin.description.en.split(". ")[0])}</div>
       </div>
-        <div className="font-bold text-xl md:text-3xl ml-4">
-          <div>Rank: {numberWithCommas(coin.market_cap_rank)}</div>
-          <div>Current Price: {numberWithCommas(coin.market_data.current_price.usd)}</div>
-          <div>{symbol} {numberWithCommas(coin.market_data.market_cap.usd.toString().slice(0, -6))}M</div>
+        <div className="font-bold text-2xl md:text-3xl w-full gap-4 mt-7 pl-5">
+          <div className="py-3">Rank: <span>{numberWithCommas(coin.market_cap_rank)}</span></div>
+          <div className="py-3">Current Price: <span>{numberWithCommas(coin.market_data.current_price.usd)}$</span></div>
+          <div className="py-3">Market Cap: <span>{symbol}{numberWithCommas(coin.market_data.market_cap.usd.toString().slice(0, -6))}M</span></div>
         </div>
       </div>
       <div className="chart">
