@@ -30,6 +30,14 @@ const CoinTable = () => {
         setcoins(data)
         setloading(false)
     }
+    const [search, setSearch] = useState("");
+    const handleSearch = () => {
+      return coins.filter(
+        (coin) =>
+          coin.name.toLowerCase().includes(search) ||
+          coin.symbol.toLowerCase().includes(search)
+      );
+    };
     const theme = createTheme({
       palette: {
         background: {
@@ -59,7 +67,7 @@ const CoinTable = () => {
             <h1 className="text-white text-4xl font-semibold text-center pt-24">Cryptocurrency Prices by Market Cap</h1>
         </div>
         <div className="w-full text-white flex justify-center items-center">
-          <input type="text" className="bg-gray-950 border border-gray-700 text-gray-300 rounded-sm focus:ring-blue-500 focus:border-blue-500 hover:border-gray-300 mt-4 p-3 py-5 text-base md:p4 md:pl-5 w-[78vw] " placeholder="Search for a crypto currency..." />
+          <input onChange={(e) => setSearch(e.target.value)} type="text" className="bg-gray-950 border border-gray-700 text-gray-300 rounded-sm focus:ring-blue-500 focus:border-blue-500 hover:border-gray-300 mt-4 p-3 py-5 text-base md:p4 md:pl-5 w-[78vw] " placeholder="Search for a crypto currency..." />
         </div>
         <div className="w-full flex justify-center">
           <div className="relative overflow-x-auto shadow-md rounded-sm flex items-center justify-center mt-6">
@@ -81,7 +89,7 @@ const CoinTable = () => {
                       </tr>
                   </thead>
                   <tbody className="pt-5">
-                    {coins.slice((page -1) * 10, (page -1) * 10 +10).map((coin) => {
+                    {handleSearch().slice((page -1) * 10, (page -1) * 10 +10).map((coin) => {
                       const profit = coin.price_change_percentage_24h > 0;
                       return <tr key={coin.symbol} className="text-white py-3 text-lg border-b border-gray-500 hover:bg-slate-900 cursor-pointer" onClick={() => goCoinPage(coin.id)}>
                           <th scope="row" className="px-2 py-4 gap-3 font-medium text-gray-100 whitespace-nowrap flex">

@@ -1,6 +1,8 @@
 // import { TrendingCoins } from '../store/Config'
 
+// import { Select } from "@mui/material"
 import { Link } from "react-router-dom"
+// import { currency } from "../store"
 
 const Navbar = () => {
   return (<>
@@ -12,18 +14,25 @@ const Navbar = () => {
     <div className="hidden w-full md:block md:w-auto" id="navbar-solid-bg">
       <ul className="flex flex-col font-medium mt-4 rounded-lg md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-transparent">
         <li>
-          <a href="#" className="py-2 px-3" aria-current="page">Home</a>
+          <a href="https://github.com/aakashsaini09/Crypto-Monster.git" target="_blank" className="py-2 px-3" aria-current="page">Github Code</a>
+        </li>
+        <li>
+          <a href="#" className="py-2 px-3 md:p-0">Linkedin</a>
+        </li>
+        <li>
+        {/* <Select
+              variant="outlined"
+              labelId="demo-simple-select-label"
+              id="demo-simple-select"
+              value={currency}
+              style={{ width: 100, height: 40, marginLeft: 15 }}
+              onChange={(e) => setCurrency(e.target.value)}
+            >
+              <MenuItem value={"USD"}>USD</MenuItem>
+              <MenuItem value={"INR"}>INR</MenuItem>
+            </Select> */}
         </li>
         
-        <li>
-          <a href="#" className="py-2 px-3 md:p-0">Services</a>
-        </li>
-        <li>
-          <a href="#" className="py-2 px-3 md:p-0">Pricing</a>
-        </li>
-        <li>
-          <a href="#" className="py-2 px-3 md:p-0">Contact</a>
-        </li>
       </ul>
     </div>
   </div>
