@@ -37,8 +37,8 @@ const Carousel = () => {
     const items = coin.map((c) => {
         let price = c.price_change_percentage_24h >= 0;
         return (
-        <Link to={`/coins/${c.id}`} className='px-14 flex flex-col justify-center items-center text-center gap-2'>
-            <img className='min-w-28 max-w-28' src={c.image} alt="" />
+        <Link to={`/coins/${c.id}`} className='px-14 mt-2 flex flex-col justify-center items-center text-center gap-2'>
+            <img className='min-w-24 max-w-24' src={c.image} alt="" />
             <span className='text-white mt-2 font-bold'>{c.symbol.toUpperCase()}<span className={`font-bold ${price ? 'text-green-600': 'text-red-600'}`}>{price && " +"} {c?.price_change_percentage_24h?.toFixed(2)}%</span></span>
             <span className='text-white font-bold text-xl'>$ {numberWithCommas(parseFloat(c.current_price)?.toFixed(2))}</span>
         </Link>)

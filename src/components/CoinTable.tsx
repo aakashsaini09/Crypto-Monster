@@ -11,7 +11,7 @@ const CoinTable = () => {
     const currentCurrency = useRecoilValue(currency)
     useEffect(() => {
         GetCoins()
-    }, [])
+    }, [currency])
     interface allcoins{
         name: string,
         id: string,
