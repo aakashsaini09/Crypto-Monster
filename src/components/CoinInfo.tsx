@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { Line } from "react-chartjs-2";
+// @ts-ignore
 import { CategoryScale, Chart, elements, LinearScale, LineController, LineElement, PointElement } from "chart.js";
 import { chartDays } from "../store/data";
 import SelectButton from "./SelectButton";

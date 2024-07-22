@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom"
 // import { useState } from "react";
 // import { useRecoilState } from "recoil";
-import { currency } from "../store";
 
 const Navbar = () => {
   // const [recoilUser, setRecoilUser] = useRecoilState(currency)
