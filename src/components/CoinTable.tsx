@@ -96,7 +96,7 @@ const CoinTable = () => {
                               <img src={coin.image} className="w-20" alt="" /> <span className="text-gray-400 font-medium text-sm w-full my-auto"><span className="uppercase text-white text-base font-bold">{coin.symbol} </span><br/>{coin.name}</span>
                           </th>
                           <td className="px-6 py-4">
-                              {coin.current_price}$
+                              ${coin.current_price}
                           </td>
                           <td className={`px-6 py-4 ${profit ? 'text-green-600': 'text-red-600'}`}>
                           {profit && "+"} {coin?.price_change_percentage_24h?.toFixed(2)}%
